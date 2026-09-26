@@ -28,7 +28,11 @@ export default automation(
     const assigneeIds = z
       .record(z.string(), z.string())
       .parse(JSON.parse(parameters.assigneeMapJson))
-    const reviewLeadDays = z.coerce.number().int().nonnegative().parse(parameters.reviewLeadDays)
+    const reviewLeadDays = z.coerce
+      .number()
+      .int()
+      .nonnegative()
+      .parse(parameters.reviewLeadDays)
     const tick = onSchedule({
       schedule: "0 9 * * *",
       timeZone: parameters.timeZone,
